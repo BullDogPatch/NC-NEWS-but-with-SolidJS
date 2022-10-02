@@ -7,7 +7,6 @@ const Navbar = () => {
 
   onMount(() => {
     getTopics().then(({ topics }) => {
-      console.log(topics, 'topics')
       setTopics(topics)
     })
   })
@@ -15,13 +14,11 @@ const Navbar = () => {
   return (
     <nav>
       <ul>
-        <For each={topics()}>
-          {topic => (
-            <li>
-              <Link href={`/${topic.slug}`}>{topic.slug}</Link>
-            </li>
-          )}
-        </For>
+        <Link href="/articles/cooking">Cooking</Link>
+        <Link href="/articles/coding">Coding</Link>
+        <Link href="/articles/football">Football</Link>
+        {/* <Link href="/blog/js/1">Blog</Link>
+        <Link href="/blog/js/1">Blog</Link> */}
       </ul>
     </nav>
   )

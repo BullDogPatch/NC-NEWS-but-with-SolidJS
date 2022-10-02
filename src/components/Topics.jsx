@@ -1,21 +1,28 @@
-// get the params from the url
+import { createSignal, For, createEffect } from 'solid-js'
 import { useParams } from '@solidjs/router'
-import { createSignal, For, onMount, createResource } from 'solid-js'
 import { getTopicArticles } from '../utils/api'
 import Article from './Article'
+import Loading from './Loading'
 
 const Topics = () => {
-  // get the params from the url
   const params = useParams()
-  console.log({ ...params }, 'params')
+
+  const [articles, setArticles] = createSignal([])
+  const [loading, setLoading] = createSignal(true)
+
+  createEffect(() => {
+    setLoading(true)
+    getTopicArticles(params.topic).then(({ articles }) => {
+      setArticles(articles)
+      setLoading(false)
+    })
+  })
 
   return (
     <>
-      <div>{JSON.stringify(params)}</div>;
-      {/* <div>
-        <h2>{topic}</h2>
-        <For each={articles()}>{article => <Article article={article} />}</For>
-      </div> */}
+      {loading() && <Loading />}
+      <h2>{params.topic}</h2>
+      <For each={articles()}>{article => <Article article={article} />}</For>
     </>
   )
 }
