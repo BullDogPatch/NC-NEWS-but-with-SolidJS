@@ -37,3 +37,10 @@
   line-height: 1.2;
   font-size: 1.2rem;
 }
+
+.article img {
+  width: 70%;
+  height: 70%;
+  margin: 1rem;
+  object-fit: cover;
+}

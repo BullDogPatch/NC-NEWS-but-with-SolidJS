@@ -3,6 +3,7 @@ import { useParams } from '@solidjs/router'
 import { getTopicArticles } from '../utils/api'
 import Article from './Article'
 import Loading from './Loading'
+import styles from '../App.module.css'
 
 const Topics = () => {
   const params = useParams()
@@ -19,11 +20,11 @@ const Topics = () => {
   })
 
   return (
-    <>
-      {loading() && <Loading />}
+    <div className={styles.articles_container}>
       <h2>{params.topic}</h2>
+      {loading() && <Loading />}
       <For each={articles()}>{article => <Article article={article} />}</For>
-    </>
+    </div>
   )
 }
 
