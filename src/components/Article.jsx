@@ -1,10 +1,10 @@
 import styles from '../App.module.css'
 
-const Article = ({ article }) => {
+const Article = props => {
   return (
     <div class={styles.article}>
-      <h4>{article.title}</h4>
-      <p>{article.body}</p>
+      <h4>{props.article.title}</h4>
+      <p>{props.article.body}</p>
     </div>
   )
 }
