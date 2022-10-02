@@ -1,5 +1,5 @@
 import { onMount, createSignal, For } from 'solid-js'
-import { NavLink } from '@solidjs/router'
+import { Link } from '@solidjs/router'
 import { getTopics } from '../utils/api'
 
 const Navbar = () => {
@@ -7,6 +7,7 @@ const Navbar = () => {
 
   onMount(() => {
     getTopics().then(({ topics }) => {
+      console.log(topics, 'topics')
       setTopics(topics)
     })
   })
@@ -17,7 +18,7 @@ const Navbar = () => {
         <For each={topics()}>
           {topic => (
             <li>
-              <NavLink href={`/articles/${topic.slug}`}>{topic.slug}</NavLink>
+              <Link href={`/${topic.slug}`}>{topic.slug}</Link>
             </li>
           )}
         </For>

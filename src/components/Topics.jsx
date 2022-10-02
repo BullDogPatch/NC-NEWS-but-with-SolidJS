@@ -2,14 +2,21 @@
 import { useParams } from '@solidjs/router'
 import { createSignal, For, onMount, createResource } from 'solid-js'
 import { getTopicArticles } from '../utils/api'
+import Article from './Article'
+
 const Topics = () => {
-  const { topic } = useParams()
-  console.log(topic)
+  // get the params from the url
+  const params = useParams()
+  console.log({ ...params }, 'params')
 
   return (
-    <div>
-      <h1>{topic}</h1>
-    </div>
+    <>
+      <div>{JSON.stringify(params)}</div>;
+      {/* <div>
+        <h2>{topic}</h2>
+        <For each={articles()}>{article => <Article article={article} />}</For>
+      </div> */}
+    </>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Routes, Route } from '@solidjs/router'
+import { Routes, Route, Router } from '@solidjs/router'
 import Articles from './components/Articles'
 import Header from './components/Header'
 import styles from './App.module.css'
@@ -9,11 +9,13 @@ function App() {
   return (
     <div className={styles.container}>
       <Header />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Articles />} />
-        <Route path="/articles/:topic" component={<Topics />} />
-      </Routes>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" component={<Articles />} />
+          <Route path="/:topic" component={<Topics />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
